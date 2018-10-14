@@ -1,5 +1,6 @@
 import numpy as np
 from polinom import Polinom
+import matplotlib.pyplot as plt
 
 def cubic_splain():
     a = []
@@ -58,13 +59,20 @@ def cubic_splain():
     for i in range(n):
         b[i] = ((point[i + 1][1] - point[i][1]) / h[i]) - (h[i] / 3) *(c[i + 1] + 2 * c[i])
 
-    c.pop([2])
     print(point)
     print(a)
     print(b)
     print(c)
     print(d)
-    
+
+    for i in range(n):
+        x = np.arange(point[i][0], point[i + 1][0] + 0.01, 0.01)
+        plt.plot(x, a[i] + b[i] * (x - point[i][0]) + c[i] * (x - point[i][0]) ** 2 + d[i] * (x  - point[i][0]) ** 3)
+    plt.xlabel(r'$x$') #Метка по оси x в формате TeX
+    plt.ylabel(r'$f(x)$') #Метка по оси y в формате TeX
+    plt.title(r'$cubic splain$') #Заголовок в формате TeX
+    plt.grid(True) #Сетка
+    plt.show() #Показать график
 
 
 
