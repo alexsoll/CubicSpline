@@ -10,7 +10,7 @@ def cubic_splain():
     h = []
     pol = []
     point = []
-    file = open("point.txt" ,'r', encoding="utf-8")
+    file = open("Point1.txt" ,'r', encoding="utf-8")
     while True:
         line = file.readline().split(" ")
         if (len(line) <= 1):
@@ -59,15 +59,24 @@ def cubic_splain():
     for i in range(n):
         b[i] = ((point[i + 1][1] - point[i][1]) / h[i]) - (h[i] / 3) *(c[i + 1] + 2 * c[i])
 
-    print(point)
-    print(a)
-    print(b)
-    print(c)
-    print(d)
+    #print(point)
+    #print(a)
+    #print(b)
+    #print(c)
+    #print(d)
 
     for i in range(n):
         pol.append(Polinom(a[i], b[i], c[i], d[i], point[i][0]))
+        print("P[", i, "] = ", end = '', sep = '')
         print(pol[i])
+
+
+
+    wfile = open("Polinoms.txt", 'w')
+    for i in range(n):
+        wfile.write("P[" + str(i) + "] = " + str(pol[i]) + '\n')
+
+
 
     for i in range(n):
         x = np.arange(point[i][0], point[i + 1][0] + 0.01, 0.01)
@@ -77,6 +86,8 @@ def cubic_splain():
     plt.title(r'$cubic splain$') #Заголовок в формате TeX
     plt.grid(True) #Сетка
     plt.show() #Показать график
+    file.close()
+    wfile.close()
 
 
 
