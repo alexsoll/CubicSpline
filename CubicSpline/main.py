@@ -8,8 +8,8 @@ def cubic_splain():
     c = []
     d = []
     h = []
-    pol = []
     point = []
+    pol = []
     file = open("point.txt" ,'r', encoding="utf-8")
     while True:
         line = file.readline().split(" ")
@@ -18,7 +18,6 @@ def cubic_splain():
         line[0] = float(line[0])
         line[1] = float(line[1])
         point.append([line[0] , line[1]])
-
     n = len(point) - 1
     a = np.zeros(n)
     b = np.zeros(n)
@@ -33,6 +32,7 @@ def cubic_splain():
         h[i] = point[i + 1][0] - point[i][0]
 
     Matrix = np.zeros((n - 1, n - 1))
+
     Matrix[0][0] = 2 * (h[0] + h[1])
     Matrix[0][1] = h[1]
 
@@ -52,9 +52,10 @@ def cubic_splain():
 
     for i in range(1, n):
         c[i] = tmp[i - 1]
-
+    
     for i in range(n): 
         d[i] = (c[i + 1] - c[i]) / (3 * h[i])
+
 
     for i in range(n):
         b[i] = ((point[i + 1][1] - point[i][1]) / h[i]) - (h[i] / 3) *(c[i + 1] + 2 * c[i])
@@ -65,10 +66,9 @@ def cubic_splain():
     print(c)
     print(d)
 
-    for i in range(n):
+    for i in range (n):
         pol.append(Polinom(a[i], b[i], c[i], d[i], point[i][0]))
         print(pol[i])
-
     for i in range(n):
         x = np.arange(point[i][0], point[i + 1][0] + 0.01, 0.01)
         plt.plot(x, a[i] + b[i] * (x - point[i][0]) + c[i] * (x - point[i][0]) ** 2 + d[i] * (x  - point[i][0]) ** 3)
@@ -78,10 +78,6 @@ def cubic_splain():
     plt.grid(True) #Сетка
     plt.show() #Показать график
 
-
-
-
-
-
-
-cubic_splain()
+a = 5
+print("{0:+}".format(-a) + " hello")
+#cubic_splain()
