@@ -1,8 +1,11 @@
 import numpy as np
 from polinom import Polinom
 import matplotlib.pyplot as plt
+from matplotlib.widgets import TextBox  
+from matplotlib.widgets import Button
 
-def cubic_splain():
+
+def main():
     a = []
     b = []
     c = []
@@ -59,12 +62,6 @@ def cubic_splain():
     for i in range(n):
         b[i] = ((point[i + 1][1] - point[i][1]) / h[i]) - (h[i] / 3) *(c[i + 1] + 2 * c[i])
 
-    #print(point)
-    #print(a)
-    #print(b)
-    #print(c)
-    #print(d)
-
     for i in range(n):
         pol.append(Polinom(a[i], b[i], c[i], d[i], point[i][0]))
         print("P[", i, "] = ", end = '', sep = '')
@@ -76,8 +73,6 @@ def cubic_splain():
     for i in range(n):
         wfile.write("P[" + str(i) + "] = " + str(pol[i]) + '\n')
 
-
-
     for i in range(n):
         x = np.arange(point[i][0], point[i + 1][0] + 0.01, 0.01)
         plt.plot(x, a[i] + b[i] * (x - point[i][0]) + c[i] * (x - point[i][0]) ** 2 + d[i] * (x  - point[i][0]) ** 3)
@@ -85,14 +80,17 @@ def cubic_splain():
     plt.ylabel(r'$f(x)$') #Метка по оси y в формате TeX
     plt.title(r'$cubic splain$') #Заголовок в формате TeX
     plt.grid(True) #Сетка
+
+    ######################################
+    #initial_text = ""
+    #axbox = plt.axes([0.1, 0.05, 0.8, 0.075])
+    #text_box = TextBox(axbox, 'Evaluate', initial=initial_text)
+    ##TextBox.text
+    #axes_button_add = pylab.axes([0.7, 0.05, 0.25, 0.075])
+    #button_add = Button(axes_button_add, 'Считать')
+    #button_add.on_clicked(onButtonAddClicked)
+    #################################
+
     plt.show() #Показать график
     file.close()
     wfile.close()
-
-
-
-
-
-
-
-cubic_splain()
