@@ -73,12 +73,13 @@ def main():
     for i in range(n):
         wfile.write("P[" + str(i) + "] = " + str(pol[i]) + '\n')
 
+
     for i in range(n):
         x = np.arange(point[i][0], point[i + 1][0] + 0.01, 0.01)
         plt.plot(x, a[i] + b[i] * (x - point[i][0]) + c[i] * (x - point[i][0]) ** 2 + d[i] * (x  - point[i][0]) ** 3)
     plt.xlabel(r'$x$') #Метка по оси x в формате TeX
     plt.ylabel(r'$f(x)$') #Метка по оси y в формате TeX
-    plt.title(r'$cubic splain$') #Заголовок в формате TeX
+    plt.title(r'$cubic splaine$') #Заголовок в формате TeX
     plt.grid(True) #Сетка
 
     ######################################
